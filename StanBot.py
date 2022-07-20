@@ -333,4 +333,4 @@ async def helpme(ctx):
 
 	await ctx.channel.send(embed = embed)
 
-bot.run("OTk4NjA4OTk1MDgwMjIwNjgz.GVChKd.tC9_DgmLTsx513xdAhHAwI9Yi5qvF-THtqezIM")
+bot.run("TOKEN")
