@@ -1,2 +1,2 @@
-web : StanBot.py
-worker : StanBot.py
+web: python StanBot.py
+worker: python StanBot.py
