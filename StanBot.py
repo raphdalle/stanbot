@@ -10,6 +10,7 @@ import random
 import os
 import cryptocode as cp
 
+print(zebre)
 plt.ioff()
 intents = Intents.default()
 intents.members = True 
