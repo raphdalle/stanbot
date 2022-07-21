@@ -8,12 +8,12 @@ from numpy import sin, cos, tan, sqrt, exp, log
 import matplotlib.pyplot as plt
 import random 
 import os
-from dotenv import load_dotenv
-
+import cryptocode as cp
 
 plt.ioff()
 intents = Intents.default()
 intents.members = True 
+key = "discord"
 bot = commands.Bot(command_prefix="!", intents=intents)
 channel_repartition = 998625250554159305
 log_bot = 998942314619736085
@@ -333,4 +333,7 @@ async def helpme(ctx):
 
 	await ctx.channel.send(embed = embed)
 
-bot.run(os.getenv("TOKEN"))
+
+TOKEN= "2GLskABJYaJRpgwVoMfkY5eXXWP2MhPg3w3oJqS+4jJBg/GkAzY71VXaHuT9wgAGoTTuTXICb8VT0Y6IblGcD63GsDmdDQ==*XQas6CRFMEl9GAdq6gQKgg==*jgVm8u9um5g7S0CzNDQa7Q==*VpZfb2w/3/rSqM19vb8dsA=="
+
+bot.run(cp.decrypt(TOKEN, key))
