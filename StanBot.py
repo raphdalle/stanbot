@@ -185,7 +185,7 @@ async def courbe(ctx, fct, mini : float, maxi : float, pas : float):
 
 	if "ln" in fct:
 		e = fct.split("ln")
-		fonct = "log".join(e)
+		fct = "log".join(e)
 
 	if pas >= 1:
 		arrondi = 1
@@ -199,7 +199,7 @@ async def courbe(ctx, fct, mini : float, maxi : float, pas : float):
 	ordo = []
 
 	def fonc(x):
-		return eval(fonct)
+		return eval(fct)
 
 	val = mini
 
@@ -248,7 +248,7 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 
 	if "ln" in fct:
 		e = fct.split("ln")
-		fonct = "log".join(e)
+		fct = "log".join(e)
 
 	if pas >= 1:
 		arrondi = 1
@@ -262,7 +262,7 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 	ordonnée_deriv = []	
 
 	def fonc(x):
-		return eval(fonct)
+		return eval(fct)
 
 	val = mini
 
@@ -310,15 +310,15 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 @bot.command(pass_context = True)
 async def deriv(ctx, fct:str, val : int):
 
-	def fonc(x):
-		return eval(fonct)
-
 	if "ln" in fct:
 		e = fct.split("ln")
-		fonct = "log".join(e)
+		fct = "log".join(e)
 
 	def fonc(x):
-			return eval(fonct)
+		return eval(fct)
+
+	def fonc(x):
+			return eval(fct)
 
 	deriv = derivative(fonc, val)
 
@@ -331,10 +331,10 @@ async def calcul(ctx, fct:str, val : int):
 
 	if "ln" in fct:
 		e = fct.split("ln")
-		fonct = "log".join(e)
+		fct = "log".join(e)
 
 	def fonc(x):
-			return eval(fonct)
+			return eval(fct)
 
 	try:
 		y = fonc(val)
@@ -353,7 +353,6 @@ async def helpme(ctx):
 	embed.add_field(name = "deriv *fonction  valeur*", value = "Cette commande permet d'obtenir **f'**(valeur)\n", inline = False)
 	embed.add_field(name = "cbderiv *fonction  minimum  maximum  pas*", value = "Cette commande se base sur le même principe que celui de la commande courbe, à la différence qu'elle renvoie la courbe de la fonction dérivée\n", inline = False)
 	embed.add_field(name = "rand *minimum  maximum*", value = "Cette commande renvoie un nombre aléatoire entre les bornes minimum et maximum")
-	embed.add_field(name = "calcul *fct  val*", value = "Cette commande calcule **f**(val)")
 	embed.set_footer(text = f"En espérant que cela ait pu t'aider {ctx.message.author}")
 
 	await ctx.channel.send(embed = embed)
