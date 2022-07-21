@@ -317,9 +317,6 @@ async def deriv(ctx, fct:str, val : int):
 	def fonc(x):
 		return eval(fct)
 
-	def fonc(x):
-			return eval(fct)
-
 	deriv = derivative(fonc, val)
 
 	await ctx.channel.send(f"{ctx.message.author.mention} La dérivée de la fonction f(x) = {fct} pour x = {val} est f'({val}) = {deriv}")
@@ -334,7 +331,7 @@ async def calcul(ctx, fct:str, val : int):
 		fct = "log".join(e)
 
 	def fonc(x):
-			return eval(fct)
+		return eval(fct)
 
 	try:
 		y = fonc(val)
