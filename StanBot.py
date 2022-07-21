@@ -185,7 +185,7 @@ async def courbe(ctx, fct, mini : float, maxi : float, pas : float):
 
 	if "ln" in fct:
 		e = fct.split("ln")
-		fct = "log".join(e)
+		fonct = "log".join(e)
 
 	if pas >= 1:
 		arrondi = 1
@@ -199,7 +199,7 @@ async def courbe(ctx, fct, mini : float, maxi : float, pas : float):
 	ordo = []
 
 	def fonc(x):
-		return eval(fct)
+		return eval(fonct)
 
 	val = mini
 
@@ -219,7 +219,7 @@ async def courbe(ctx, fct, mini : float, maxi : float, pas : float):
 
 		if y[i] == "VI":
 			if ordo != []:
-				plt.plot(abc, ordo, color = "yellow")
+				plt.plot(abc, ordo, color = "blue")
 			abc = []
 			ordo = []
 
@@ -248,7 +248,7 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 
 	if "ln" in fct:
 		e = fct.split("ln")
-		fct = "log".join(e)
+		fonct = "log".join(e)
 
 	if pas >= 1:
 		arrondi = 1
@@ -262,7 +262,7 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 	ordonnée_deriv = []	
 
 	def fonc(x):
-		return eval(fct)
+		return eval(fonct)
 
 	val = mini
 
@@ -311,12 +311,36 @@ async def cbderiv(ctx, fct, mini : float, maxi : float, pas : float):
 async def deriv(ctx, fct:str, val : int):
 
 	def fonc(x):
-		return eval(fct)
+		return eval(fonct)
+
+	if "ln" in fct:
+		e = fct.split("ln")
+		fonct = "log".join(e)
+
+	def fonc(x):
+			return eval(fonct)
 
 	deriv = derivative(fonc, val)
 
 	await ctx.channel.send(f"{ctx.message.author.mention} La dérivée de la fonction f(x) = {fct} pour x = {val} est f'({val}) = {deriv}")
 
+@bot.command(pass_context = True)
+async def calcul(ctx, fct:str, val : int):
+
+	
+
+	if "ln" in fct:
+		e = fct.split("ln")
+		fonct = "log".join(e)
+
+	def fonc(x):
+			return eval(fonct)
+
+	try:
+		y = fonc(val)
+		await ctx.channel.send(f"{ctx.message.author.mention} On a pour f(x) = {fct} et x = {val} : f({val}) = {y}")
+	except Exception as err:
+		await ctx.channel.send(f"{ctx.message.author.mention} {val} est une valeur Interdite ! (ou incalculable) {err}")
 
 
 @bot.command(pass_context = True)
@@ -329,6 +353,7 @@ async def helpme(ctx):
 	embed.add_field(name = "deriv *fonction  valeur*", value = "Cette commande permet d'obtenir **f'**(valeur)\n", inline = False)
 	embed.add_field(name = "cbderiv *fonction  minimum  maximum  pas*", value = "Cette commande se base sur le même principe que celui de la commande courbe, à la différence qu'elle renvoie la courbe de la fonction dérivée\n", inline = False)
 	embed.add_field(name = "rand *minimum  maximum*", value = "Cette commande renvoie un nombre aléatoire entre les bornes minimum et maximum")
+	embed.add_field(name = "calcul *fct  val*", value = "Cette commande calcule **f**(val)")
 	embed.set_footer(text = f"En espérant que cela ait pu t'aider {ctx.message.author}")
 
 	await ctx.channel.send(embed = embed)
